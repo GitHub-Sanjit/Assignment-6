@@ -14,7 +14,7 @@ const displayNavbar = (navs) => {
         console.log(nav);
         const li = document.createElement('li');
         li.innerHTML = `
-            <div onclick="displayNews(${nav.category_id})" class="newsDiv">
+            <div onclick="displayNews('${nav.category_id}')" class="newsDiv">
                 <li id="${nav.category_id}">${nav.category_name}</li>
             </div>
         `;
@@ -26,8 +26,14 @@ const displayNavbar = (navs) => {
     })
 }
 
-const displayNews = (category_id) => {
-    console.log(category_id);
+const displayNews = async(category_id) => {
+    // console.log(category_id);
+    const newsContainer = document.getElementById('news-container');
+    const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
+    // console.log(url);
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data.data);
 }
 
 // document.getElementById(01).onclick, async(id) => {
