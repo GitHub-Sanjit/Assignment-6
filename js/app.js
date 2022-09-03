@@ -11,7 +11,7 @@ const displayNavbar = (navs) => {
     console.log(navs);
     const navUl = document.getElementById('nav-ul');
     navs.forEach(nav => {
-        console.log(nav);
+        // console.log(nav);
         const li = document.createElement('li');
         li.innerHTML = `
             <div onclick="displayNews('${nav.category_id}')" class="newsDiv">
@@ -28,20 +28,39 @@ const displayNavbar = (navs) => {
 
 const displayNews = async(category_id) => {
     // console.log(category_id);
+    
     const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = ``;
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
-    // console.log(url);
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data);
+    const newsCategory = data.data;
+    newsCategory.forEach(news => {
+        console.log(news);
+        const newsDiv = document.createElement('div');
+        newsDiv.classList.add('row');
+        newsDiv.innerHTML = ``;
+        newsDiv.innerHTML = `
+            <div class="card mb-3" style="max-width: auto">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="${news.image_url}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">${news.title}</h5>
+                        <p class="card-text">${news.details}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+        newsContainer.appendChild(newsDiv);
+    });
 }
 
-// document.getElementById(01).onclick, async(id) => {
-//     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     console.log(data);
-// }
+
 
 
 // const displayNews = (categories) => {
