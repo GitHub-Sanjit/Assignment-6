@@ -33,17 +33,17 @@ const displayNews = async(category_id) => {
     
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
-    const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
+    const url = `https://openapi.programming-hero.com/api/news/category/${category_id ? category_id : '01'}`;
     const res = await fetch(url);
     const data = await res.json();
     const newsCategory = data.data;
     newsCategory.forEach(news => {
-        // console.log(news);
+        console.log(news._id);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row');
         newsDiv.innerHTML = ``;
         newsDiv.innerHTML = `
-            <div onclick="newsDetails('${news._id}')" class="card mb-3" style="max-width: auto">
+            <div onclick="newsDetails'(${news._id})" class="card mb-3" style="max-width: auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="${news.image_url}" class="img-fluid rounded" alt="...">
@@ -68,10 +68,18 @@ const displayNews = async(category_id) => {
     });
 }
 
-const newsDetails = (newsId) => {
-    console.log(newsId);
+const newsDetails = async(news_id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
     const modalDiv = document.getElementById('modal-div');
-    modalDiv.classList.add('modal-dialog modal-fullscreen-sm-down');
+    // modalDiv.classList.add('modal-dialog modal-fullscreen-sm-down');
+    const div = document.createElement('div');
+    div.innerHTML = `
+
+    `;
+    modalDiv.appendChild(div);
     
 }
 
@@ -144,3 +152,4 @@ const newsDetails = (newsId) => {
 
 
 loadCategory();
+displayNews()
