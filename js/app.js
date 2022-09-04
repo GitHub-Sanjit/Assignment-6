@@ -1,27 +1,29 @@
 const loadCategory = async() =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`;
+    const eMassage = document.getElementById('Error-massage');
     try {
         const res = await fetch(url);
         const data = await res.json();
+        eMassage.classList.add('d-none');
         displayNavbar(data.data.news_category);
-    } catch (error){
-        console.log(error);
+    } catch (error) {
+        eMassage.classList.remove('d-none');
+
     }
 }
 
 const displayNavbar = (navs) => {
-    // console.log(navs);
+
     const navUl = document.getElementById('nav-ul');
     navs.forEach(nav => {
-        // console.log(nav);
+       
         const li = document.createElement('li');
         li.innerHTML = `
             <div onclick="displayNews('${nav.category_id}')" class="newsDiv">
                 <li id="${nav.category_id}">${nav.category_name ? nav.category_name : 'No Data Found'}</li>
             </div>
         `;
-        // li.id = nav.category_id;
-        // li.innerText = nav.category_name;
+
         navUl.appendChild(li);
        
         
@@ -29,7 +31,7 @@ const displayNavbar = (navs) => {
 }
 
 const displayNews = async(category_id) => {
-    // console.log(category_id);
+
     
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
@@ -83,7 +85,7 @@ const newsDetails = async (id) => {
 
 loadCategory();
 displayNews();
-// newsDetails('0282e0e58a5c404fbd15261f11c2ab6a');
+
 
 document.getElementById('blog').addEventListener('click', () => {
     const modalBody = document.getElementById('modal-body');
