@@ -78,29 +78,48 @@ const newsDetails = async (id) => {
     const modalBody = document.getElementById('modal-body');
     modalTitle.innerText = data.data[0].title;
     modalBody.innerText = data.data[0].details;
-    // const modalcontainer = document.getElementById('modalContainer');
-    // const modalDiv = document.getElementById('exampleModal');
-    // modalDiv.classList.add('modal-dialog ');
-    // const div = document.createElement('div');
-    // div.innerHTML = `
-    //      <div class="modal-content">
-    //             <div class="modal-header">
-    //                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-    //                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    //             </div>
-    //             <div class="modal-body">
-    //                 ...
-    //             </div>
-    //             <div class="modal-footer">
-    //                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    //                 <button type="button" class="btn btn-primary">Save changes</button>
-    //             </div>
-    //     </div>
-    // `;
-    // modalDiv.appendChild(div);
     
 }
 
 loadCategory();
 displayNews();
 // newsDetails('0282e0e58a5c404fbd15261f11c2ab6a');
+
+document.getElementById('blog').addEventListener('click', () => {
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+                    <div class="First">
+                        <div class="q">
+                            <h5>Q: Why Should you use Templete String</h5>
+                        </div>
+                        <div class="ans">
+                            <h6>Answer: Template strings are a powerful feature of modern JavaScript released in ES6. It lets us insert/interpolate variables
+                            and expressions into strings without needing to concatenate like in older versions of JavaScript. It allows us to create
+                            strings that are complex and contain dynamic elements.</h6>
+                        </div>
+                    </div>
+                    <div class="Second">
+                        <div class="q">
+                            <h5>Q: Difference Between Arrow function and Regular Function</h5>
+                        </div>
+                        <div class="ans">
+                            <h6>Answer: Unlike regular functions, arrow functions do not have their own this . The value of this inside an arrow function
+                            remains the same throughout the lifecycle of the function and is always bound to the value of this in the closest
+                            non-arrow parent function.</h6>
+                        </div>
+                    </div>
+                    <div class="Third">
+                        <div class="q">
+                            <h5>Q: Difference among var, let and const</h5>
+                        </div>
+                        <div class="ans">
+                            <h6>Answer: var declarations are globally scoped or function scoped while let and const are block scoped.
+                            var variables can be updated and re-declared within its scope; let variables can be updated but not re-declared; const
+                            variables can neither be updated nor re-declared.
+                            They are all hoisted to the top of their scope. But while var variables are initialized with undefined, let and const
+                            variables are not initialized.
+                            While var and let can be declared without being initialized, const must be initialized during declaration.</h6>
+                        </div>
+                    </div>
+    `;
+})

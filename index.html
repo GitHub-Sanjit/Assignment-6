@@ -36,7 +36,7 @@
         <h4><span class="bg-primary m-1 p-1">Todays</span>Portal</h4>
         <div class="ms-auto d-flex">
             <h5 class="m-3">News</h5>
-            <h5 class="m-3">Blog</h5>
+            <h5 id="blog" class="m-3 newsDiv" data-bs-toggle="modal" data-bs-target="#exampleModal">Blog</h5>
         </div>
     </header>
     <hr>
@@ -47,15 +47,7 @@
     </section>
 
     <nav class="d-flex p-3 justify-content-between text-secondary">
-        <!-- <h6 class="pointer">Home</h6>
-        <h6 class="pointer" id="01">Breaking news</h6>
-        <h6 class="pointer" id="02">International news</h6>
-        <h6 class="pointer" id="03">Sports</h6>
-        <h6 class="pointer" id="04">Entertainment</h6>
-        <h6 class="pointer" id="05">Regular news</h6>
-        <h6 class="pointer" id="06">Culture</h6>
-        <h6 class="pointer" id="07">Arts</h6>
-        <h6 class="pointer" id="08">All News</h6> -->
+    
     </nav>
     <section class="show-count bg-secondary bg-opacity-10 p-2">
         <div id="count-news">
@@ -89,11 +81,34 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- blog modal -->
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button> -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newsDetailsmodalLabel">FAQ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- blog modal -->
 
     <footer class="mb-3">
         <h5 class="text-center mt-auto">Copyright 2022 Daily Portal</h5>
