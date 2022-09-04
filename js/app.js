@@ -43,7 +43,7 @@ const displayNews = async(category_id) => {
         newsDiv.classList.add('row');
         newsDiv.innerHTML = ``;
         newsDiv.innerHTML = `
-            <div onclick="newsDetails'(${news._id})" class="card mb-3" style="max-width: auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div onclick="newsDetails('${news._id}')" class="card mb-3" style="max-width: auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="${news.image_url}" class="img-fluid rounded" alt="...">
@@ -68,88 +68,39 @@ const displayNews = async(category_id) => {
     });
 }
 
-const newsDetails = async(news_id) => {
-    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+const newsDetails = async (id) => {
+    console.log(id);
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
-    const modalDiv = document.getElementById('modal-div');
-    // modalDiv.classList.add('modal-dialog modal-fullscreen-sm-down');
-    const div = document.createElement('div');
-    div.innerHTML = `
-
-    `;
-    modalDiv.appendChild(div);
+    console.log(data.data);
+    const modalTitle = document.getElementById('newsDetailsmodalLabel');
+    const modalBody = document.getElementById('modal-body');
+    modalTitle.innerText = data.data[0].title;
+    modalBody.innerText = data.data[0].details;
+    // const modalcontainer = document.getElementById('modalContainer');
+    // const modalDiv = document.getElementById('exampleModal');
+    // modalDiv.classList.add('modal-dialog ');
+    // const div = document.createElement('div');
+    // div.innerHTML = `
+    //      <div class="modal-content">
+    //             <div class="modal-header">
+    //                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+    //                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    //             </div>
+    //             <div class="modal-body">
+    //                 ...
+    //             </div>
+    //             <div class="modal-footer">
+    //                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    //                 <button type="button" class="btn btn-primary">Save changes</button>
+    //             </div>
+    //     </div>
+    // `;
+    // modalDiv.appendChild(div);
     
 }
 
-
-
-// const displayNews = (categories) => {
-//     console.log(categories);
-//     const newsContainer = document.getElementById('news-container');
-//     categories.forEach(category => {
-//         const newsDiv = document.createElement('div');
-//         newsDiv.classList.add('row');
-//         newsDiv.innerHTML = `
-//             <div class="card mb-3" style="max-width: auto">
-//             <div class="row g-0">
-//                 <div class="col-md-4">
-//                     <img src="..." class="img-fluid rounded-start" alt="...">
-//                 </div>
-//                 <div class="col-md-8">
-//                     <div class="card-body">
-//                         <h5 class="card-title">Card title</h5>
-//                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-//                             additional
-//                             content. This content is a little bit longer.</p>
-//                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//         `
-//         newsContainer.appendChild(newsDiv);
-//     })
-// }
-
-
-// experiment
-
-// const loadPhoneDetails = async id =>{
-//     const url =` https://openapi.programming-hero.com/api/news/category/${id}`;
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     displayPhoneDetails(data.data);
-// }
-
-// const displayPhoneDetails = phone =>{
-//     console.log(phone);
-//     const modalTitle = document.getElementById('phoneDetailModalLabel');
-//     modalTitle.innerText = phone.name;
-//     const phoneDetails = document.getElementById('phone-details');
-//     console.log(phone.mainFeatures.sensors[0]);
-//     phoneDetails.innerHTML = `
-//         <p>Release Date: ${phone.releaseDate ? phone.releaseDate : 'No Release Date Found'}</p>
-//         <p>Storage: ${phone.mainFeatures ? phone.mainFeatures.storage : 'No Storage Information '}</p>
-//         <p>Others: ${phone.others ? phone.others.Bluetooth : 'No Bluetooth Information'}</p>
-//         <p>Sensor: ${phone.mainFeatures.sensors ? phone.mainFeatures.sensors[0] : 'no sensor'}</p>
-//     `
-// }
-
-// // experiment
-
-// const breakingNews = document.getElementById('01');
-// breakingNews.addEventListener("mousedown", (e) => {
-//     const category_id = e.target.id;
-//     const displayNews = async category_id =>{
-//     const url =` https://openapi.programming-hero.com/api/news/category/${category_id}`;
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     displayPhoneDetails(data.data);
-// }
-// });
-
-
 loadCategory();
-displayNews()
+displayNews();
+// newsDetails('0282e0e58a5c404fbd15261f11c2ab6a');
